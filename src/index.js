@@ -9,7 +9,7 @@ const resetButton = document.getElementById("reset-btn");
 const characterForm = document.getElementById("character-form")
 
 function fetchCharacters() {
-    fetch('http://localhost:3000/characters')
+    fetch('https://flatter-cuties-vpdp.vercel.app/characters')
         .then(response => response.json())
         .then(data => {
             characters = data;
@@ -17,3 +17,10 @@ function fetchCharacters() {
         })
         .catch(error => console.error('Error fetching characters:', error));
 }
+function addCharacterToBar(character) {
+    const span = document.createElement("span"); 
+    span.textContent = character.name; 
+    span.dataset.id = character.id; 
+    span.addEventListener("click", () => displayCharacterDetails(character)); 
+    characterBar.appendChild(span); 
+  }
