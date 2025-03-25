@@ -86,4 +86,31 @@ document.addEventListener("DOMContentLoaded", () => {
       const characterId = characterImage.dataset.id;
       updateVotes(characterId, 0);
     });
+  characterForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const newCharacter = {
+        name: document.getElementById("new-name").value,
+        image: document.getElementById("new-image").value,
+        votes: 0,
+      };
+  
+      fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCharacter),
+      })
+        .then((response) => response.json())
+        .then((character) => {
+          addCharacterToBar(character);
+          displayCharacterDetails(character);
+        });
+  
+      characterForm.reset();
+    });
+  
+    // Load characters when the page loads
+    fetchCharacters();
+  });
   
