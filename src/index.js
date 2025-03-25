@@ -21,12 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Add character name to character-bar
     function addCharacterToBar(character) {
-      const span = document.createElement("span");
-      span.textContent = character.name;
-      span.dataset.id = character.id;
-      span.addEventListener("click", () => displayCharacterDetails(character));
-      characterBar.appendChild(span);
-    }
+      const characterDiv = document.createElement("div");
+      characterDiv.textContent = character.name;
+      characterDiv.dataset.id = character.id;
+      characterDiv.addEventListener("click", () => displayCharacterDetails(character));
+      
+      const characterBar = document.getElementById("character-bar");
+      characterBar.appendChild(characterDiv);
+  }
   
     // Display character details when clicked
     function displayCharacterDetails(character) {
